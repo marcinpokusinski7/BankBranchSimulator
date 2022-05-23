@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bankbranch.BankBranch" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-05-23T22:18:21" hostname="MARCIN" time="0.125">
+  <properties/>
+  <testcase name="terst" classname="com.bankbranch.BankBranch" time="0.125"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
