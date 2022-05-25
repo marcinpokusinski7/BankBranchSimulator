@@ -1,37 +1,69 @@
 package bankbranch;
 
-public class BankBranch {
-    public static int nextId = 1;
-    public int id;
-    public String bankName;
-    public String bankAddress;
+import java.util.ArrayList;
+import java.util.List;
 
-    public BankBranch(String bankName, String bankAddress) {
-        this.id = nextId++;
-        this.bankName = bankName;
-        this.bankAddress = bankAddress;
+public class BankBranch {
+    private static int nextId = 1;
+    private int id;
+    private String branchName;
+    private List<Bank> bankList;
+
+    public List<Bank> getBankList() {
+        return bankList;
     }
 
-    public BankBranch() {
+    public void setBankList(List<Bank> bankList) {
+        this.bankList = bankList;
+    }
+
+    public BankBranch(String branchName) {
+        this.id = nextId++;
+        this.branchName = branchName;
+        this.bankList = new ArrayList<>();
+    }
+
+    public static int getNextId() {
+        return nextId;
+    }
+
+    public static void setNextId(int nextId) {
+        BankBranch.nextId = nextId;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getBankName() {
-        return bankName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
+    public String getBranchName() {
+        return branchName;
     }
 
-    public String getBankAddress() {
-        return bankAddress;
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
     }
 
-    public void setBankAddress(String bankAddress) {
-        this.bankAddress = bankAddress;
+    public BankBranch() {
+    }
+
+    public static BankBranch createBankBranch(String branchName) {
+        return new BankBranch(branchName);
+    }
+
+    public void addBankToBranch(Bank bank){
+        this.bankList.add(bank);
+    }
+
+    @Override
+    public String toString() {
+        return "BankBranch{" +
+                "id=" + id +
+                ", branchName='" + branchName + '\'' +
+                ", bankList="  +bankList +
+                '}';
     }
 }
