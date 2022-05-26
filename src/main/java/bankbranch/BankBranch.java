@@ -13,30 +13,14 @@ public class BankBranch {
         return bankList;
     }
 
-    public void setBankList(List<Bank> bankList) {
-        this.bankList = bankList;
-    }
-
     public BankBranch(String branchName) {
         this.id = nextId++;
         this.branchName = branchName;
         this.bankList = new ArrayList<>();
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        BankBranch.nextId = nextId;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getBranchName() {

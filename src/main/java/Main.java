@@ -1,6 +1,6 @@
 import bankbranch.Bank;
 import bankbranch.BankBranch;
-import bankbranch.ManageBanks;
+import bankbranch.BanksManager;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public class Main {
         BankBranch branch = BankBranch.createBankBranch("Polski");
         BankBranch branch1 = BankBranch.createBankBranch("Wloski");
 
-        ManageBanks manager = new ManageBanks();
+        BanksManager manager = new BanksManager();
         manager.addBranch(branch);
         manager.addBranch(branch1);
         manager.addBankToBranch(Bank.createNewBank("Pekao", "Smiesnzy", "123"), branch);

@@ -1,5 +1,10 @@
 package bankbranch;
 
+import account.Account;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bank {
     private static int nextId = 1;
     private int id;
@@ -7,20 +12,19 @@ public class Bank {
     private String bankAddress;
     private String contact;
 
+    private List<Account> userAccounts;
+
     public Bank(String bankName, String bankAddress, String contact) {
         this.id = nextId++;
         this.bankName = bankName;
         this.bankAddress = bankAddress;
         this.contact = contact;
+        this.userAccounts = new ArrayList<>();
     }
 
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getBankName() {

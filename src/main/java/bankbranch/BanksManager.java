@@ -3,8 +3,8 @@ package bankbranch;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManageBanks {
-    private final List<BankBranch> availableBankBranches = new ArrayList<>();
+public class BanksManager {
+    private static final List<BankBranch> availableBankBranches = new ArrayList<>();
 
 
     public boolean addBankToBranch(Bank bank, BankBranch bankBranch) {
