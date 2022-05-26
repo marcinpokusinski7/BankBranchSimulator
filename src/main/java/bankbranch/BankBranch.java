@@ -38,7 +38,7 @@ public class BankBranch {
         return new BankBranch(branchName);
     }
 
-    public void addBankToBranch(Bank bank){
+    protected void addBankToBranch(Bank bank){
         this.bankList.add(bank);
     }
 

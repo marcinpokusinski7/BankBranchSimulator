@@ -14,6 +14,10 @@ public class Bank {
 
     private List<Account> userAccounts;
 
+    public List<Account> getUserAccounts() {
+        return userAccounts;
+    }
+
     public Bank(String bankName, String bankAddress, String contact) {
         this.id = nextId++;
         this.bankName = bankName;
