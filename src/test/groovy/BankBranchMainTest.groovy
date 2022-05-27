@@ -1,13 +1,13 @@
-import bankbranch.BankBranch
+import bankbranch.BankBranchMain
 import spock.lang.Specification
 
-class BankBranchTest extends Specification{
+class BankBranchMainTest extends Specification{
     def "Unique id of bank branch should be generated"() {
         given:
-        def bankBranch = new BankBranch("Bank1")
+        def bankBranch = new BankBranchMain("Bank1")
 
         when:
-        def newBankBranch = new BankBranch("Bank1")
+        def newBankBranch = new BankBranchMain("Bank1")
 
         then:
         bankBranch.getId() != newBankBranch.getId()

@@ -1,6 +1,7 @@
 package account;
 
 import bankbranch.Bank;
+import exceptions.BalanceCannotBeNegativeException;
 
 public class Account {
     private static int nextId = 1;
@@ -49,4 +50,5 @@ public class Account {
     public void setBank(Bank bank) {
         this.bank = bank;
     }
+
 }

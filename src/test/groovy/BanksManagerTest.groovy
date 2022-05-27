@@ -1,5 +1,5 @@
 import bankbranch.Bank
-import bankbranch.BankBranch
+import bankbranch.BankBranchMain
 import bankbranch.BanksManager
 import spock.lang.Specification
 
@@ -7,7 +7,7 @@ class BanksManagerTest extends Specification{
 
     def "Test method add bank to branch"() {
         given:
-        def bankBranch = BankBranch.createBankBranch("Test branch")
+        def bankBranch = BankBranchMain.createBankBranch("Test branch")
         def bank = Bank.createNewBank("Test", "test2", "test3")
         def manager = new BanksManager();
 
@@ -21,7 +21,7 @@ class BanksManagerTest extends Specification{
 
     def "Add Branch to collection"() {
         given:
-        def bankBranch = BankBranch.createBankBranch("Second test branch")
+        def bankBranch = BankBranchMain.createBankBranch("Second test branch")
         def manager = new BanksManager();
 
         when:

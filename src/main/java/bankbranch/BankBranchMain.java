@@ -3,7 +3,7 @@ package bankbranch;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankBranch {
+public class BankBranchMain {
     private static int nextId = 1;
     private int id;
     private String branchName;
@@ -13,7 +13,7 @@ public class BankBranch {
         return bankList;
     }
 
-    public BankBranch(String branchName) {
+    public BankBranchMain(String branchName) {
         this.id = nextId++;
         this.branchName = branchName;
         this.bankList = new ArrayList<>();
@@ -31,11 +31,11 @@ public class BankBranch {
         this.branchName = branchName;
     }
 
-    public BankBranch() {
+    public BankBranchMain() {
     }
 
-    public static BankBranch createBankBranch(String branchName) {
-        return new BankBranch(branchName);
+    public static BankBranchMain createBankBranch(String branchName) {
+        return new BankBranchMain(branchName);
     }
 
     protected void addBankToBranch(Bank bank){
@@ -44,7 +44,7 @@ public class BankBranch {
 
     @Override
     public String toString() {
-        return "BankBranch{" +
+        return "BankBranchMain{" +
                 "id=" + id +
                 ", branchName='" + branchName + '\'' +
                 ", bankList="  +bankList +

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BanksManager {
-    private static final List<BankBranch> availableBankBranches = new ArrayList<>();
+    private static List<BankBranchMain> AVAILABLE_BANK_BRANCH_MAINS = new ArrayList<>();
 
 
-    public boolean addBankToBranch(Bank bank, BankBranch bankBranch) {
-        for (BankBranch branch : availableBankBranches) {
-            if (bankBranch.getBranchName().equals(branch.getBranchName())) {
+    public boolean addBankToBranch(Bank bank, BankBranchMain bankBranchMain) {
+        for (BankBranchMain branch : AVAILABLE_BANK_BRANCH_MAINS) {
+            if (bankBranchMain.getBranchName().equals(branch.getBranchName())) {
                 if (!branch.getBankList().isEmpty()) {
                     for (Bank banks : branch.getBankList()) {
                         {
@@ -17,13 +17,13 @@ public class BanksManager {
                                 System.out.println("Bank already exists in this branch");
                                 return false;
                             } else {
-                                bankBranch.addBankToBranch(bank);
+                                bankBranchMain.addBankToBranch(bank);
                                 return true;
                             }
                         }
                     }
                 } else {
-                    bankBranch.addBankToBranch(bank);
+                    bankBranchMain.addBankToBranch(bank);
                     return true;
                 }
             } else {
@@ -36,7 +36,7 @@ public class BanksManager {
 
 
     public void getBankBranches() {
-        for (BankBranch i : availableBankBranches) {
+        for (BankBranchMain i : AVAILABLE_BANK_BRANCH_MAINS) {
             System.out.println("branch " + i.getBranchName());
             for (Bank j : i.getBankList()) {
                 System.out.printf("Banks: " + j.getBankName() + " " + j.getBankAddress() + " " + j.getContact());
@@ -44,17 +44,17 @@ public class BanksManager {
         }
     }
 
-    public boolean addBranch(BankBranch bankBranch) {
-        if (bankBranch.getBranchName().equals(getBranches())) {
+    public boolean addBranch(BankBranchMain bankBranchMain) {
+        if (bankBranchMain.getBranchName().equals(getBranches())) {
             System.out.println("Branch already exists");
             return false;
         }
-        availableBankBranches.add(bankBranch);
+        AVAILABLE_BANK_BRANCH_MAINS.add(bankBranchMain);
         return true;
     }
 
     private String getBranches() {
-        for (BankBranch branch : availableBankBranches) {
+        for (BankBranchMain branch : AVAILABLE_BANK_BRANCH_MAINS) {
             return branch.getBranchName();
         }
         return null;

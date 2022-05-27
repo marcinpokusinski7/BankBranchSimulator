@@ -1,23 +1,33 @@
-import account.Account
+import account.AccountManager
 import bankbranch.Bank
-import bankbranch.BankBranch
-import bankbranch.BanksManager
 import spock.lang.Specification
 
 class AccountManagerTest extends Specification{
-    def "Add Account to existing Bank"() {
+    def "Check the negative amount of money transfer"() {
         given:
-        def bankBranch = BankBranch.createBankBranch("Odział główny")
         def bank = Bank.createNewBank("Bank", "glowny", "email")
-        def manager = new BanksManager();
-        manager.addBankToBranch(bank, bankBranch);
-        Account userAccount = new Account("Marcin Test", 100.00, Bank.createNewBank("Testowy", "lota 40", "791 974 794"))
+        def userFirst = new AccountManager().createUserAccount("Test", 100.0, bank);
+        def userSecond = new AccountManager().createUserAccount("Test", 100.0, bank);
 
         when:
-        boolean test = Account.createUserAccount(bank, userAccount)
+        def t = userFirst.transerMoney(userSecond, -50.00)
 
         then:
-        test
+        t == false
+        thrown(TransferCannotBeNegativeException)
+
+    }
+
+    def "Add Account to existing Bank"() {
+        given:
+        def bank = Bank.createNewBank("Bank", "glowny", "email")
+        def account = new AccountManager()
+
+        when:
+        account.createUserAccount("Test", 2.0 , bank)
+
+        then:
+        bank.getUserAccounts().forEach(x -> x.accountOwner == "Test")
     }
 
 }

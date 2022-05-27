@@ -1,4 +1,4 @@
-package account;
+package exceptions;
 
 public class BalanceCannotBeNegativeException extends IllegalAccessException {
     private double balanceAmount;
