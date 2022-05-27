@@ -2,6 +2,7 @@ package account;
 
 import bankbranch.Bank;
 import exceptions.BalanceCannotBeNegativeException;
+import exceptions.TransferCannotBeNegativeException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,28 @@ public class AccountManager {
         return user;
     }
 
-
-
+    public boolean transferMoney(Account accountFrom, Account accountTo, double amount) throws TransferCannotBeNegativeException {
+        var firstAmount = accountFrom.getBalance();
+        var secondAmount = accountTo.getBalance();
+        try {
+            if (amount > 0) {
+                if (accountFrom.getBalance() - amount >= 0) {
+                    accountFrom.setBalance(firstAmount - amount);
+                    accountTo.setBalance(secondAmount + amount);
+                    return true;
+                } else {
+                    System.out.println("You cannot transfer more than you have");
+                    throw new TransferCannotBeNegativeException("You cannot transfer more than you have", amount);
+                }
+            }
+        } catch (TransferCannotBeNegativeException ex) {
+            System.out.println("You cannot transfer negative amount");
+        }
+        return false;
+    }
 }
+
+
+
+
+

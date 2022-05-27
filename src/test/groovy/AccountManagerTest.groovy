@@ -6,15 +6,15 @@ class AccountManagerTest extends Specification{
     def "Check the negative amount of money transfer"() {
         given:
         def bank = Bank.createNewBank("Bank", "glowny", "email")
+        def accountManager = new AccountManager();
         def userFirst = new AccountManager().createUserAccount("Test", 100.0, bank);
         def userSecond = new AccountManager().createUserAccount("Test", 100.0, bank);
 
         when:
-        def t = userFirst.transerMoney(userSecond, -50.00)
+        boolean check = accountManager.transferMoney(userFirst, userSecond, -50.00)
 
         then:
-        t == false
-        thrown(TransferCannotBeNegativeException)
+        !check
 
     }
 

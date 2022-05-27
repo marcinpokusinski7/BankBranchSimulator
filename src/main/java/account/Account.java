@@ -14,12 +14,11 @@ public class Account {
         this.id = nextId++;
         this.accountOwner = accountOwner;
         this.bank = bank;
-        if(balance < 0){
+        if (balance < 0) {
             throw new BalanceCannotBeNegativeException("You can't create account with negative balance", balance);
         }
         this.balance = balance;
     }
-
 
 
     public int getId() {
