@@ -30,10 +30,6 @@ public class Account {
         return accountOwner;
     }
 
-    public void setAccountOwner(String accountOwner) {
-        this.accountOwner = accountOwner;
-    }
-
     public double getBalance() {
         return balance;
     }
@@ -46,8 +42,5 @@ public class Account {
         return bank;
     }
 
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
 
 }

@@ -35,25 +35,16 @@ public class Bank {
         return bankName;
     }
 
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
 
     public String getBankAddress() {
         return bankAddress;
     }
 
-    public void setBankAddress(String bankAddress) {
-        this.bankAddress = bankAddress;
-    }
 
     public String getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
 
     public static Bank createNewBank(String bankName, String bankAddress, String contact){
         return new Bank(bankName, bankAddress, contact);

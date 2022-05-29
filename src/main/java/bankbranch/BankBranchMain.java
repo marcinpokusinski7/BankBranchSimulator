@@ -27,10 +27,6 @@ public class BankBranchMain {
         return branchName;
     }
 
-    public void setBranchName(String branchName) {
-        this.branchName = branchName;
-    }
-
     public BankBranchMain() {
     }
 

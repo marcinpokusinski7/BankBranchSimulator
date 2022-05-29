@@ -36,6 +36,24 @@ public class AccountManager {
         return false;
     }
 
+
+    public void depositMoneyToAccount(Account user, double depositedAmount) {
+        if(depositedAmount > 0){
+           double balance = user.getBalance();
+           user.setBalance(depositedAmount+balance);
+        }else{
+            System.out.println("Deposited amount is zero or less than zero");
+        }
+    }
+
+    public void withdrawMoneyFromAccount(Account account, double withdrawAmount) {
+        if(withdrawAmount > 0){
+            double balance = account.getBalance();
+            account.setBalance(withdrawAmount-balance);
+        }else{
+            System.out.println("Deposited amount is zero or less than zero");
+        }
+    }
 }
 
 

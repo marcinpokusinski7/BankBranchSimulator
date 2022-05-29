@@ -30,4 +30,29 @@ class AccountManagerTest extends Specification{
         bank.getUserAccounts().forEach(x -> x.accountOwner == "Test")
     }
 
+    def "Deposit money to account"() {
+        given:
+        def account = new AccountManager().createUserAccount("Test", 100.0, Bank.createNewBank("Bank", "glowny", "email"))
+        def accountManager = new AccountManager()
+
+        when:
+        accountManager.depositMoneyToAccount(account, 100);
+
+
+        then:
+        account.getBalance() == 200;
+    }
+
+    def "Withdraw money from account"(){
+        given:
+        def account = new AccountManager().createUserAccount("Test", 100.0, Bank.createNewBank("Bank", "glowny", "email"))
+        def accountManager = new AccountManager()
+
+        when:
+        accountManager.withdrawMoneyFromAccount(account, 100);
+
+
+        then:
+        account.getBalance() == 0;
+    }
 }
