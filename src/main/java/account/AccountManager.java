@@ -19,7 +19,7 @@ public class AccountManager {
     public boolean transferMoney(Account accountFrom, Account accountTo, double amount) throws TransferCannotBeNegativeException {
         var firstAmount = accountFrom.getBalance();
         var secondAmount = accountTo.getBalance();
-        try {
+        try{
             if (amount > 0) {
                 if (accountFrom.getBalance() - amount >= 0) {
                     accountFrom.setBalance(firstAmount - amount);
@@ -35,6 +35,7 @@ public class AccountManager {
         }
         return false;
     }
+
 }
 
 
