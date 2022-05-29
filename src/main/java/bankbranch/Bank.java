@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
+    public static List<Bank> AVAILABLE_BANKS = new ArrayList<>();
     private static int nextId = 1;
     private int id;
     private String bankName;
@@ -47,6 +48,8 @@ public class Bank {
 
 
     public static Bank createNewBank(String bankName, String bankAddress, String contact){
-        return new Bank(bankName, bankAddress, contact);
+        var bank = new Bank(bankName, bankAddress, contact);
+        AVAILABLE_BANKS.add(bank);
+        return bank;
     }
 }

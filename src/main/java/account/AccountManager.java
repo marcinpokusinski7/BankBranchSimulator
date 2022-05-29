@@ -10,8 +10,8 @@ import java.util.List;
 public class AccountManager {
     private static List<Account> AVAILABLE_USER_ACCOUNTS = new ArrayList<>();
 
-    public Account createUserAccount(String accountOwnerBank, double balance, Bank bank) throws BalanceCannotBeNegativeException {
-        var user = new Account(accountOwnerBank, balance, bank);
+    public Account createUserAccount(String accountOwnerBank, double balance, String accountNumber, Bank bank) throws BalanceCannotBeNegativeException {
+        var user = new Account(accountOwnerBank, balance, accountNumber, bank);
         AVAILABLE_USER_ACCOUNTS.add(user);
         return user;
     }
@@ -49,7 +49,7 @@ public class AccountManager {
     public void withdrawMoneyFromAccount(Account account, double withdrawAmount) {
         if(withdrawAmount > 0){
             double balance = account.getBalance();
-            account.setBalance(withdrawAmount-balance);
+            account.setBalance(balance-withdrawAmount);
         }else{
             System.out.println("Deposited amount is zero or less than zero");
         }

@@ -3,13 +3,15 @@ package bankbranch;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bankbranch.Bank.AVAILABLE_BANKS;
+
 public class BanksManager {
-    private static List<BankBranchMain> AVAILABLE_BANK_BRANCH_MAINS = new ArrayList<>();
+    public static List<BankBranchMain> AVAILABLE_BANK_BRANCH_MAINS = new ArrayList<>();
 
 
     public boolean addBankToBranch(Bank bank, BankBranchMain bankBranchMain) {
-        for(BankBranchMain branch :AVAILABLE_BANK_BRANCH_MAINS) {
-            if(branch.getBranchName().equals(bankBranchMain.getBranchName()))
+        for (BankBranchMain branch : AVAILABLE_BANK_BRANCH_MAINS) {
+            if (branch.getBranchName().equals(bankBranchMain.getBranchName()))
                 return bankEquals(bank, bankBranchMain);
             else {
                 System.out.println("Branch does not exists");
@@ -17,7 +19,6 @@ public class BanksManager {
         }
         return false;
     }
-
 
     private boolean bankEquals(Bank bank, BankBranchMain bankBranchMain) {
         if (bankBranchMain.getBankList().stream().anyMatch(bank1 -> bank1.equals(bank))) {
@@ -30,14 +31,19 @@ public class BanksManager {
     }
 
 
-    public void getBankBranches() {
-        for (BankBranchMain i : AVAILABLE_BANK_BRANCH_MAINS) {
-            System.out.println("branch " + i.getBranchName());
-            for (Bank j : i.getBankList()) {
-                System.out.printf("Banks: " + j.getBankName() + " " + j.getBankAddress() + " " + j.getContact());
-            }
+    public void printBanks() {
+        for (int i = 0; i < AVAILABLE_BANKS.size(); i++) {
+            System.out.println(i + " - "
+                    + " " + AVAILABLE_BANKS.get(i).getBankName()
+                    + ", " + AVAILABLE_BANKS.get(i).getBankAddress()
+                    + ", " + AVAILABLE_BANKS.get(i).getContact());
         }
     }
+
+    public Bank getBank(int index){
+       return AVAILABLE_BANKS.get(index);
+    }
+
 
     public boolean addBranch(BankBranchMain bankBranchMain) {
         if (!bankBranchMain.getBranchName().equals(getBranches())) {

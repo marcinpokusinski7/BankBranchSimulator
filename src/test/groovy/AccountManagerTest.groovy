@@ -7,8 +7,8 @@ class AccountManagerTest extends Specification{
         given:
         def bank = Bank.createNewBank("Bank", "glowny", "email")
         def accountManager = new AccountManager();
-        def userFirst = new AccountManager().createUserAccount("Test", 100.0, bank);
-        def userSecond = new AccountManager().createUserAccount("Test", 100.0, bank);
+        def userFirst = new AccountManager().createUserAccount("Test", 100.0,"123123123", bank);
+        def userSecond = new AccountManager().createUserAccount("Test", 100.0,"123123123", bank);
 
         when:
         boolean check = accountManager.transferMoney(userFirst, userSecond, -50.00)
@@ -24,7 +24,7 @@ class AccountManagerTest extends Specification{
         def account = new AccountManager()
 
         when:
-        account.createUserAccount("Test", 2.0 , bank)
+        account.createUserAccount("Test", 2.0 ,"123123123",  bank)
 
         then:
         bank.getUserAccounts().forEach(x -> x.accountOwner == "Test")
@@ -32,7 +32,7 @@ class AccountManagerTest extends Specification{
 
     def "Deposit money to account"() {
         given:
-        def account = new AccountManager().createUserAccount("Test", 100.0, Bank.createNewBank("Bank", "glowny", "email"))
+        def account = new AccountManager().createUserAccount("Test", 100.0, "123123123", Bank.createNewBank("Bank", "glowny","email"))
         def accountManager = new AccountManager()
 
         when:
@@ -45,7 +45,7 @@ class AccountManagerTest extends Specification{
 
     def "Withdraw money from account"(){
         given:
-        def account = new AccountManager().createUserAccount("Test", 100.0, Bank.createNewBank("Bank", "glowny", "email"))
+        def account = new AccountManager().createUserAccount("Test", 100.0,"123123123",  Bank.createNewBank("Bank", "glowny","email"))
         def accountManager = new AccountManager()
 
         when:
