@@ -15,7 +15,6 @@ class AccountManagerTest extends Specification{
 
         then:
         !check
-
     }
 
     def "Add Account to existing Bank"() {
@@ -37,7 +36,6 @@ class AccountManagerTest extends Specification{
 
         when:
         accountManager.depositMoneyToAccount(account, 100);
-
 
         then:
         account.getBalance() == 200;
