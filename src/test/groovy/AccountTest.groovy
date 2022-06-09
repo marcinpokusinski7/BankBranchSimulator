@@ -1,6 +1,6 @@
 import account.Account
-import exceptions.BalanceCannotBeNegativeException
 import bankbranch.Bank
+import exceptions.BalanceCannotBeNegativeException
 import spock.lang.Specification
 
 class AccountTest extends Specification{
@@ -10,5 +10,14 @@ class AccountTest extends Specification{
 
         then:
         thrown(BalanceCannotBeNegativeException.class)
+    }
+
+    def "checkAddedTransactions"() {
+        when:
+        def account = new Account("Marcin Test", 100.00, "123123123",Bank.createNewBank("Testowy", "lota 40", "791 974 794"))
+        account.transactionAdd("Transaction created")
+
+        then:
+        account.getTransaction().stream().findFirst().get().toString() == "Transaction created"
     }
 }
