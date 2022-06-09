@@ -3,6 +3,21 @@ import bankbranch.Bank
 import spock.lang.Specification
 
 class AccountManagerTest extends Specification{
+    def "checkLastTransactionsForUsers"() {
+        given:
+        def accountManager = new AccountManager();
+        def bank = Bank.createNewBank("Bank", "glowny", "email")
+        def userFirst = new AccountManager().createUserAccount("Test", 100.0,"123123123", bank);
+        def userSecond = new AccountManager().createUserAccount("Test", 100.0,"123123123", bank);
+
+        when:
+        accountManager.transferMoney(userFirst, userSecond, 50);
+        accountManager.depositMoneyToAccount(userFirst, 150);
+
+        then:
+        accountManager.transactionList(userFirst).stream().count() == 2
+    }
+
     def "Check the negative amount of money transfer"() {
         given:
         def bank = Bank.createNewBank("Bank", "glowny", "email")

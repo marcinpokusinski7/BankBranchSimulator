@@ -50,25 +50,52 @@ public class AccountManager {
     private void changeBalance(Account accountFrom, Account accountTo, double amount, double firstAmount, double secondAmount) {
         accountFrom.setBalance(firstAmount - amount);
         accountTo.setBalance(secondAmount + amount);
+        String message = "Money transferred " + amount;
+        addInformationAboutTransaction(accountFrom, accountTo, message);
+    }
+
+    private void addInformationAboutTransaction(Account accountFrom, Account accountTo, String message) {
+        accountFrom.transactionAdd("Transaction made: " + message);
+        accountTo.transactionAdd("Transaction made: " + message);
+    }
+
+    private void addInformationAboutTransaction(Account account, String message) {
+        account.transactionAdd("Transaction made: " + message);
     }
 
 
     public void depositMoneyToAccount(Account user, double depositedAmount) {
         if (depositedAmount > 0) {
-            double balance = user.getBalance();
-            user.setBalance(depositedAmount + balance);
+            changeBalance(user, depositedAmount);
         } else {
             System.out.println("Deposited amount is zero or less than zero");
         }
     }
 
-    public void withdrawMoneyFromAccount(Account account, double withdrawAmount) {
+    private void changeBalance(Account userAccount, double depositedAmount) {
+        double balance = userAccount.getBalance();
+        userAccount.setBalance(depositedAmount + balance);
+        String message = "Amount deposited " + depositedAmount + "balance " + userAccount.getBalance();
+        addInformationAboutTransaction(userAccount, message);
+    }
+
+    public void withdrawMoneyFromAccount(Account userAccount, double withdrawAmount) {
         if (withdrawAmount > 0) {
-            double balance = account.getBalance();
-            account.setBalance(balance - withdrawAmount);
+            double balance = userAccount.getBalance();
+            userAccount.setBalance(balance - withdrawAmount);
+            String message = "Amount withdraw " + withdrawAmount + "balance " + userAccount.getBalance();
+            addInformationAboutTransaction(userAccount, message);
         } else {
             System.out.println("Deposited amount is zero or less than zero");
         }
+    }
+
+    public void checkBalance(Account account) {
+        System.out.println("Balance of the account with number: " + account.getAccountNumber() + " is: " + account.getBalance());
+    }
+
+    public List<String> transactionList(Account account) {
+        return account.getTransaction();
     }
 }
 

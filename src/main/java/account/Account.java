@@ -3,6 +3,9 @@ package account;
 import bankbranch.Bank;
 import exceptions.BalanceCannotBeNegativeException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private static int nextId = 1;
     private final int id;
@@ -11,6 +14,7 @@ public class Account {
     private final String accountNumber;
     private double balance;
     private final Bank bank;
+    private List<String> transactions;
 
     @Override
     public String toString() {
@@ -32,15 +36,12 @@ public class Account {
             throw new BalanceCannotBeNegativeException("You can't create account with negative balance", balance);
         }
         this.balance = balance;
+        this.transactions = new ArrayList<>();
     }
 
-
-
-
-    public int getId() {
-        return id;
+    public String getAccountNumber() {
+        return accountNumber;
     }
-
 
     public String getAccountOwner() {
         return accountOwner;
@@ -58,5 +59,11 @@ public class Account {
         return bank;
     }
 
+    public void transactionAdd(String transaction){
+       this.transactions.add(transaction);
+    }
 
+    public List<String> getTransaction(){
+        return transactions;
+    }
 }
