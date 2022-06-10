@@ -25,9 +25,9 @@ class BanksManagerTest extends Specification{
         def manager = new BanksManager();
 
         when:
-        def isValid = manager.addBranch(bankBranch);
+        def isExist = manager.addBranch(bankBranch);
 
         then:
-        isValid
+
     }
 }

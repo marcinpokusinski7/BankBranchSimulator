@@ -27,8 +27,6 @@ public class BankBranchMain {
         return branchName;
     }
 
-    public BankBranchMain() {
-    }
 
     public static BankBranchMain createBankBranch(String branchName) {
         return new BankBranchMain(branchName);

@@ -9,6 +9,16 @@ public class BanksManager {
     public static List<BankBranchMain> AVAILABLE_BANK_BRANCH_MAINS = new ArrayList<>();
 
 
+    private boolean bankEquals(Bank bank, BankBranchMain bankBranchMain) {
+        if (bankBranchMain.getBankList().stream().anyMatch(bank1 -> bank1.equals(bank))) {
+            System.out.println("Bank already exists in this branch");
+        } else {
+            bankBranchMain.addBankToBranch(bank);
+            return true;
+        }
+        return false;
+    }
+
     public boolean addBankToBranch(Bank bank, BankBranchMain bankBranchMain) {
         for (BankBranchMain branch : AVAILABLE_BANK_BRANCH_MAINS) {
             if (branch.getBranchName().equals(bankBranchMain.getBranchName()))
@@ -16,16 +26,6 @@ public class BanksManager {
             else {
                 System.out.println("Branch does not exists");
             }
-        }
-        return false;
-    }
-
-    private boolean bankEquals(Bank bank, BankBranchMain bankBranchMain) {
-        if (bankBranchMain.getBankList().stream().anyMatch(bank1 -> bank1.equals(bank))) {
-            System.out.println("Bank already exists in this branch");
-        } else {
-            bankBranchMain.addBankToBranch(bank);
-            return true;
         }
         return false;
     }
@@ -45,20 +45,19 @@ public class BanksManager {
     }
 
 
-    public boolean addBranch(BankBranchMain bankBranchMain) {
-        if (!bankBranchMain.getBranchName().equals(getBranches())) {
-            AVAILABLE_BANK_BRANCH_MAINS.add(bankBranchMain);
-            return true;
-        }
-        System.out.println("Branch already exists");
-        return false;
+    public void addBranch(BankBranchMain bankBranchMain) {
+        checkIfBranchExists(bankBranchMain);
     }
 
-    private String getBranches() {
-        for (BankBranchMain branch : AVAILABLE_BANK_BRANCH_MAINS) {
-            return branch.getBranchName();
+
+
+    private void checkIfBranchExists(BankBranchMain bankBranchMain) {
+        if (AVAILABLE_BANK_BRANCH_MAINS.stream().noneMatch(branch -> branch.getBranchName().equals(bankBranchMain.getBranchName()))) {
+            addBranchBecauseNotExists(bankBranchMain);
         }
-        return null;
+    }
+    private void addBranchBecauseNotExists(BankBranchMain bankBranchMain) {
+        AVAILABLE_BANK_BRANCH_MAINS.add(bankBranchMain);
     }
 
 
