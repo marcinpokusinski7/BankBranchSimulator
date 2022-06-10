@@ -25,9 +25,10 @@ class BanksManagerTest extends Specification{
         def manager = new BanksManager();
 
         when:
-        def isExist = manager.addBranch(bankBranch);
+        manager.addBranch(bankBranch);
 
         then:
+        manager.getBranches().stream().anyMatch(x-> x.getBranchName() == bankBranch.getBranchName())
 
     }
 }

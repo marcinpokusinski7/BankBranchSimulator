@@ -49,7 +49,9 @@ public class BanksManager {
         checkIfBranchExists(bankBranchMain);
     }
 
-
+    public List<BankBranchMain> getBranches(){
+        return AVAILABLE_BANK_BRANCH_MAINS;
+    }
 
     private void checkIfBranchExists(BankBranchMain bankBranchMain) {
         if (AVAILABLE_BANK_BRANCH_MAINS.stream().noneMatch(branch -> branch.getBranchName().equals(bankBranchMain.getBranchName()))) {
