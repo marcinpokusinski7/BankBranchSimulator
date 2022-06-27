@@ -33,7 +33,7 @@ public class BanksManager {
 
     public void printBanks() {
         for (int i = 0; i < AVAILABLE_BANKS.size(); i++) {
-            System.out.println(i + " - "
+            System.out.println(i+1 + " - "
                     + " " + AVAILABLE_BANKS.get(i).getBankName()
                     + ", " + AVAILABLE_BANKS.get(i).getBankAddress()
                     + ", " + AVAILABLE_BANKS.get(i).getContact());
@@ -41,7 +41,13 @@ public class BanksManager {
     }
 
     public Bank getBank(int index){
+        index = index -1;
        return AVAILABLE_BANKS.get(index);
+    }
+
+    public BankBranchMain getBranch(int index){
+        index = index -1;
+        return AVAILABLE_BANK_BRANCH_MAINS.get(index);
     }
 
 
@@ -49,8 +55,12 @@ public class BanksManager {
         checkIfBranchExists(bankBranchMain);
     }
 
-    public List<BankBranchMain> getBranches(){
-        return AVAILABLE_BANK_BRANCH_MAINS;
+    public void getBranches(){
+        for (int i = 0; i < AVAILABLE_BANK_BRANCH_MAINS.size(); i++) {
+            System.out.println(
+                    AVAILABLE_BANK_BRANCH_MAINS.get(i).getId()
+                    + ", " + AVAILABLE_BANK_BRANCH_MAINS.get(i).getBranchName());
+        }
     }
 
     private void checkIfBranchExists(BankBranchMain bankBranchMain) {

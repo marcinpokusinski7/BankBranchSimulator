@@ -47,7 +47,7 @@ public class Bank {
     }
 
 
-    public static Bank createNewBank(String bankName, String bankAddress, String contact){
+    public static Bank createNewBank(String bankName, String bankAddress, String contact) {
         var bank = new Bank(bankName, bankAddress, contact);
         AVAILABLE_BANKS.add(bank);
         return bank;
