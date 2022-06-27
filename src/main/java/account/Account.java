@@ -39,6 +39,10 @@ public class Account {
         this.transactions = new ArrayList<>();
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountManager {
-    private static List<Account> AVAILABLE_USER_ACCOUNTS = new ArrayList<>();
+    public static List<Account> AVAILABLE_USER_ACCOUNTS = new ArrayList<>();
 
     public Account createUserAccount(String accountOwnerBank, double balance, String accountNumber, Bank bank) throws BalanceCannotBeNegativeException {
         var user = new Account(accountOwnerBank, balance, accountNumber, bank);
@@ -96,6 +96,12 @@ public class AccountManager {
 
     public List<String> transactionList(Account account) {
         return account.getTransaction();
+    }
+
+    public void printAccountList(){
+        for (Account acc: AVAILABLE_USER_ACCOUNTS) {
+            System.out.println(acc.getId()+" "+acc.getAccountOwner()+" "+acc.getAccountNumber() +" " +acc.getBalance());
+        }
     }
 }
 

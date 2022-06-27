@@ -62,6 +62,16 @@ public class Main {
     }
 
     private static void depositMoney() {
+        System.out.println("Choose account to deposit: ");
+        accountManager.printAccountList();
+        int accNumber = scanner.nextInt();
+        scanner.nextLine();
+        accNumber = accNumber-1;
+        System.out.println("Enter how much you want deposit: ");
+        int depositBalance = scanner.nextInt();
+        scanner.nextLine();
+        accountManager.depositMoneyToAccount(AccountManager.AVAILABLE_USER_ACCOUNTS.get(accNumber),depositBalance);
+        System.out.println(AccountManager.AVAILABLE_USER_ACCOUNTS.get(accNumber).getAccountOwner()+ " "+AccountManager.AVAILABLE_USER_ACCOUNTS.get(accNumber).getBalance()+" zł");
     }
 
     private static void withdrawMoney() {
@@ -80,13 +90,12 @@ public class Main {
             scanner.nextLine();
             System.out.println("Enter new account number: ");
             String accountNumber = scanner.nextLine();
-            if (accountList.stream().noneMatch(account -> account.getAccountNumber().equals(accountNumber))) {
+            if (AccountManager.AVAILABLE_USER_ACCOUNTS.stream().noneMatch(account -> account.getAccountNumber().equals(accountNumber))) {
                 System.out.println("Choose bank: ");
                 bankmanager.printBanks();
                 String bank = scanner.nextLine();
                 var account = accountManager.createUserAccount(accountOwner, balance, accountNumber, bankmanager.getBank(Integer.parseInt(bank)));
                 System.out.println(account.toString());
-                accountList.add(account);
                 System.out.println("New account created: " + accountOwner + " " + accountNumber + " " + balance);
             } else {
                 System.out.println("Cannot add" + accountNumber + "already exists");
