@@ -75,10 +75,20 @@ public class Main {
     }
 
     private static void withdrawMoney() {
-
+        System.out.println("Choose account to withdraw: ");
+        accountManager.printAccountList();
+        int accNumber = scanner.nextInt();
+        scanner.nextLine();
+        accNumber = accNumber-1;
+        System.out.println("Enter how much you want withdraw: ");
+        int depositBalance = scanner.nextInt();
+        scanner.nextLine();
+        accountManager.withdrawMoneyFromAccount(AccountManager.AVAILABLE_USER_ACCOUNTS.get(accNumber),depositBalance);
+        System.out.println(AccountManager.AVAILABLE_USER_ACCOUNTS.get(accNumber).getAccountOwner()+ " "+AccountManager.AVAILABLE_USER_ACCOUNTS.get(accNumber).getBalance()+" zł");
     }
 
     private static void transferMoney() {
+
     }
 
     private static void createNewAccount() throws BalanceCannotBeNegativeException {
