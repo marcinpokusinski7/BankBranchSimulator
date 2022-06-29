@@ -17,9 +17,14 @@ public class AccountManager {
     }
 
     public boolean transferMoney(Account accountFrom, Account accountTo, double amount) throws TransferCannotBeNegativeException {
-        var firstAmount = accountFrom.getBalance();
-        var secondAmount = accountTo.getBalance();
-        return checkForNegativeAmountException(accountFrom, accountTo, amount, firstAmount, secondAmount);
+        if (accountFrom.getAccountNumber().equals(accountTo.getAccountNumber())) {
+            System.out.println("You cannot transfer money to the same account");
+            return false;
+        } else {
+            var firstAmount = accountFrom.getBalance();
+            var secondAmount = accountTo.getBalance();
+            return checkForNegativeAmountException(accountFrom, accountTo, amount, firstAmount, secondAmount);
+        }
     }
 
     private boolean checkForNegativeAmountException(Account accountFrom, Account accountTo, double amount, double firstAmount, double secondAmount) {
@@ -98,9 +103,9 @@ public class AccountManager {
         return account.getTransaction();
     }
 
-    public void printAccountList(){
-        for (Account acc: AVAILABLE_USER_ACCOUNTS) {
-            System.out.println(acc.getId()+" "+acc.getAccountOwner()+" "+acc.getAccountNumber() +" " +acc.getBalance());
+    public void printAccountList() {
+        for (Account acc : AVAILABLE_USER_ACCOUNTS) {
+            System.out.println(acc.getId() + " " + acc.getAccountOwner() + " " + acc.getAccountNumber() + " " + acc.getBalance());
         }
     }
 }

@@ -51,22 +51,24 @@ public class BanksManager {
     }
 
 
-    public void addBranch(BankBranchMain bankBranchMain) {
-        checkIfBranchExists(bankBranchMain);
+    public boolean addBranch(BankBranchMain bankBranchMain) {
+        return checkIfBranchExists(bankBranchMain);
     }
 
     public void getBranches(){
-        for (int i = 0; i < AVAILABLE_BANK_BRANCH_MAINS.size(); i++) {
+        for (BankBranchMain availableBankBranchMain : AVAILABLE_BANK_BRANCH_MAINS) {
             System.out.println(
-                    AVAILABLE_BANK_BRANCH_MAINS.get(i).getId()
-                    + ", " + AVAILABLE_BANK_BRANCH_MAINS.get(i).getBranchName());
+                    availableBankBranchMain.getId()
+                            + ", " + availableBankBranchMain.getBranchName());
         }
     }
 
-    private void checkIfBranchExists(BankBranchMain bankBranchMain) {
+    private boolean checkIfBranchExists(BankBranchMain bankBranchMain) {
         if (AVAILABLE_BANK_BRANCH_MAINS.stream().noneMatch(branch -> branch.getBranchName().equals(bankBranchMain.getBranchName()))) {
             addBranchBecauseNotExists(bankBranchMain);
+            return true;
         }
+        return false;
     }
     private void addBranchBecauseNotExists(BankBranchMain bankBranchMain) {
         AVAILABLE_BANK_BRANCH_MAINS.add(bankBranchMain);

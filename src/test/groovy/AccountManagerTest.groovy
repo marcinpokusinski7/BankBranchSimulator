@@ -8,7 +8,7 @@ class AccountManagerTest extends Specification{
         def accountManager = new AccountManager();
         def bank = Bank.createNewBank("Bank", "glowny", "email")
         def userFirst = new AccountManager().createUserAccount("Test", 100.0,"123123123", bank);
-        def userSecond = new AccountManager().createUserAccount("Test", 100.0,"123123123", bank);
+        def userSecond = new AccountManager().createUserAccount("Test", 100.0,"123123143", bank);
 
         when:
         accountManager.transferMoney(userFirst, userSecond, 50);
@@ -68,4 +68,18 @@ class AccountManagerTest extends Specification{
         then:
         account.getBalance() == 0;
     }
+    def "Cannot transfer to the same account"(){
+        given:
+        def account = new AccountManager().createUserAccount("Test", 100.0,"123123123",  Bank.createNewBank("Bank", "glowny","email"))
+        def accountSecond = new AccountManager().createUserAccount("Test", 100.0,"123123123",  Bank.createNewBank("Bank", "glowny","email"))
+        def accountManager = new AccountManager()
+
+        when:
+        var value = accountManager.transferMoney(account, accountSecond, 50);
+
+
+        then:
+        !value
+    }
+
 }

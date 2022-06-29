@@ -25,10 +25,19 @@ class BanksManagerTest extends Specification{
         def manager = new BanksManager();
 
         when:
-        manager.addBranch(bankBranch);
+        boolean value = manager.addBranch(bankBranch);
 
         then:
-        manager.getBranches().stream().anyMatch(x-> x.getBranchName() == bankBranch.getBranchName())
+        value
+    }
 
+    def "is valid Branch"() {
+        given:
+        def bankBranch = BankBranchMain.createBankBranch("Second test branch")
+        def manager = new BanksManager()
+        manager.addBranch(bankBranch);
+
+        expect:
+        manager.getBranch(bankBranch.getId())
     }
 }
